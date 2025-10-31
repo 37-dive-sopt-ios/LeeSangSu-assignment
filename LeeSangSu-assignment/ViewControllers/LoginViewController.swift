@@ -19,7 +19,7 @@ final class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         setup()
     }
     
@@ -111,8 +111,14 @@ extension LoginViewController {
         }
         passwordClearButton.addTarget(self, action: #selector(clearPassword), for: .touchUpInside)
         passwordToggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(pushToWelcomeVC), for: .touchUpInside)
     }
-
+    
+    @objc private func pushToWelcomeVC() {
+        let viewController = ViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
         sender.layer.borderColor = UIColor.baeminBlack.cgColor
     }
