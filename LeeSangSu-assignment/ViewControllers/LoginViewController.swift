@@ -9,10 +9,10 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     
-    let emailField = UITextField()
-    let passwordField = UITextField()
-    let loginButton = UIButton()
-    let findAccountButton = UIButton()
+    private let emailField = UITextField()
+    private let passwordField = UITextField()
+    private let loginButton = UIButton()
+    private let findAccountButton = UIButton()
     
     private let passwordToggleButton = UIButton()
     private let passwordClearButton = UIButton()
@@ -151,14 +151,14 @@ extension LoginViewController {
     }
     
     @objc private func pushToWelcomeVC() {
-        let viewController = ViewController(userID: emailField.text ?? "")
+        let viewController = WelcomeViewController(userID: emailField.text ?? "")
         viewController.delegate = self
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
 }
 
-extension LoginViewController: ViewControllerDelegate {
+extension LoginViewController: WelcomeViewControllerDelegate {
     
     func resetLoginFields() {
         emailField.text = ""

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WelcomeViewController.swift
 //  LeeSangSu-assignment
 //
 //  Created by 이상수 on 10/31/25.
@@ -7,13 +7,13 @@
 
 import UIKit
  
-protocol ViewControllerDelegate: AnyObject {
+protocol WelcomeViewControllerDelegate: AnyObject {
     func resetLoginFields()
 }
 
-class ViewController: UIViewController {
+class WelcomeViewController: UIViewController {
     
-    weak var delegate: ViewControllerDelegate?
+    weak var delegate: WelcomeViewControllerDelegate?
     private let userID: String
     private let greetingText = UILabel()
     private let backButton = UIButton()
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController {
+extension WelcomeViewController {
     
     private func setupSubviews() {
         setupBackButton()
@@ -60,7 +60,7 @@ extension ViewController {
     
 }
 
-extension ViewController {
+extension WelcomeViewController {
     
     private func setupButtonActions() {
         backButton.addTarget(self, action: #selector(backToLoginButtonDidTap), for: .touchUpInside)
@@ -77,7 +77,7 @@ extension ViewController {
     
 }
 
-extension ViewController {
+extension WelcomeViewController {
     
     private func setupLayout() {
         layoutGreetingText()
