@@ -63,7 +63,7 @@ extension LoginViewController {
     
     private func setupLoginButton() {
         view.addSubview(loginButton)
-        loginButton.backgroundColor = .lightGray
+        loginButton.backgroundColor = .baeminGray200
         loginButton.setTitle("로그인", for: .normal)
         loginButton.layer.cornerRadius = 5
     }
@@ -82,6 +82,8 @@ extension LoginViewController {
         [emailField, passwordField].forEach { tf in
             tf.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
             tf.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+            tf.addTarget(self, action:
+                            #selector(textFieldEditingDidChange), for: .editingChanged)
         }
     }
 
@@ -91,6 +93,11 @@ extension LoginViewController {
 
     @objc private func textFieldEditingDidEnd(_ sender: UITextField) {
         sender.layer.borderColor = UIColor.baeminGray200.cgColor
+    }
+    
+    @objc private func textFieldEditingDidChange() {
+        loginButton.isEnabled = !(emailField.text?.isEmpty ?? false) && !(passwordField.text?.isEmpty ?? false)
+        loginButton.backgroundColor = loginButton.isEnabled ? .baeminMint500 : .baeminGray200
     }
     
 }
