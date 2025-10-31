@@ -57,6 +57,7 @@ extension LoginViewController {
         passwordField.layer.borderWidth = 1
         passwordField.layer.borderColor = UIColor.baeminGray200.cgColor
         passwordField.backgroundColor = .baeminWhite
+        passwordField.isSecureTextEntry = true
         passwordField.addLeftPadding()
         passwordField.addRightPadding()
     }
