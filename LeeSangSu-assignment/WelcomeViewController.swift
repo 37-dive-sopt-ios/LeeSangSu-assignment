@@ -15,6 +15,7 @@ class WelcomeViewController: UIViewController {
     
     weak var delegate: WelcomeViewControllerDelegate?
     private let userID: String
+    private let imageView = UIImageView()
     private let greetingText = UILabel()
     private let backButton = UIButton()
     
@@ -40,15 +41,15 @@ class WelcomeViewController: UIViewController {
 extension WelcomeViewController {
     
     private func setupSubviews() {
-        setupBackButton()
+        setupImageView()
         setupGreetingText()
+        setupBackButton()
     }
     
-    private func setupBackButton() {
-        view.addSubview(backButton)
-        backButton.backgroundColor = .baeminMint500
-        backButton.setTitle("뒤로가기", for: .normal)
-        backButton.layer.cornerRadius = 5
+    private func setupImageView() {
+        view.addSubview(imageView)
+        imageView.image = UIImage(named: "cat")
+        //imageView.contentMode = .scaleAspectFit
     }
     
     private func setupGreetingText() {
@@ -56,6 +57,13 @@ extension WelcomeViewController {
         greetingText.numberOfLines = 2
         greetingText.textAlignment = .center
         greetingText.text = "환영합니다\n\(userID)님 반가워요!"
+    }
+    
+    private func setupBackButton() {
+        view.addSubview(backButton)
+        backButton.backgroundColor = .baeminMint500
+        backButton.setTitle("뒤로가기", for: .normal)
+        backButton.layer.cornerRadius = 5
     }
     
 }
@@ -80,14 +88,26 @@ extension WelcomeViewController {
 extension WelcomeViewController {
     
     private func setupLayout() {
+        layoutImageView()
         layoutGreetingText()
         layoutBackButton()
     }
     
+    private func layoutImageView() {
+        imageView.anchor(
+            top: view.safeAreaLayoutGuide.topAnchor,
+            leading: view.leadingAnchor,
+            trailing: view.trailingAnchor,
+            padding: .init(top: 60, left: 0, bottom: 20, right: 0),
+            height: 280
+        )
+    }
+    
     private func layoutGreetingText() {
         greetingText.anchor(
-            centerX: view.centerXAnchor,
-            centerY: view.centerYAnchor
+            top: imageView.bottomAnchor,
+            padding: .init(top: 20, left: 0, bottom: 0, right: 0),
+            centerX: view.centerXAnchor
         )
     }
     
