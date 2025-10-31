@@ -13,6 +13,9 @@ final class LoginViewController: UIViewController {
     let passwordField = UITextField()
     let loginButton = UIButton()
     let findAccountButton = UIButton()
+    
+    private let passwordToggleButton = UIButton(type: .system)
+    private let passwordClearButton = UIButton(type: .system)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +48,8 @@ extension LoginViewController {
         emailField.layer.borderWidth = 1
         emailField.layer.borderColor = UIColor.baeminGray200.cgColor
         emailField.backgroundColor = .baeminWhite
+        emailField.clearButtonMode = .whileEditing
         emailField.addLeftPadding()
-        emailField.addRightPadding()
     }
     
     private func setupPasswordField() {
@@ -59,14 +62,35 @@ extension LoginViewController {
         passwordField.backgroundColor = .baeminWhite
         passwordField.isSecureTextEntry = true
         passwordField.addLeftPadding()
-        passwordField.addRightPadding()
+        
+        setupPwClearButton()
+        setupPwToggleButton()
+        
+        let stack = UIStackView(arrangedSubviews: [passwordClearButton, passwordToggleButton])
+        stack.axis = .horizontal
+        stack.spacing = 8
+        stack.alignment = .center
+        
+        passwordField.rightView = stack
+        passwordField.rightViewMode = .whileEditing
     }
     
+    private func setupPwClearButton() {
+        passwordClearButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        passwordClearButton.tintColor = .gray
+    }
+    
+    private func setupPwToggleButton() {
+        passwordToggleButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+        passwordToggleButton.tintColor = .gray
+    }
+
     private func setupLoginButton() {
         view.addSubview(loginButton)
         loginButton.backgroundColor = .baeminGray200
         loginButton.setTitle("로그인", for: .normal)
         loginButton.layer.cornerRadius = 5
+        loginButton.isEnabled = false
     }
     
     private func setupFindAccountButton() {
@@ -80,12 +104,13 @@ extension LoginViewController {
 extension LoginViewController {
     
     private func setupButtonActions() {
-        [emailField, passwordField].forEach { tf in
-            tf.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
-            tf.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
-            tf.addTarget(self, action:
-                            #selector(textFieldEditingDidChange), for: .editingChanged)
+        [emailField, passwordField].forEach {
+            $0.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+            $0.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+            $0.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         }
+        passwordClearButton.addTarget(self, action: #selector(clearPassword), for: .touchUpInside)
+        passwordToggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
     }
 
     @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
@@ -97,10 +122,21 @@ extension LoginViewController {
     }
     
     @objc private func textFieldEditingDidChange() {
-        loginButton.isEnabled = !(emailField.text?.isEmpty ?? false) && !(passwordField.text?.isEmpty ?? false)
+        loginButton.isEnabled = !(emailField.text?.isEmpty ?? true) && !(passwordField.text?.isEmpty ?? true)
         loginButton.backgroundColor = loginButton.isEnabled ? .baeminMint500 : .baeminGray200
     }
     
+    @objc private func clearPassword() {
+        passwordField.text = ""
+        textFieldEditingDidChange()
+    }
+    
+    @objc private func togglePasswordVisibility() {
+        passwordField.isSecureTextEntry.toggle()
+        let imageName = passwordField.isSecureTextEntry ? "eye.fill" : "eye.slash.fill"
+        passwordToggleButton.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+
 }
 
 extension LoginViewController {
