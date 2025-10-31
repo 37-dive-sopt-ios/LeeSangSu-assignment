@@ -14,12 +14,12 @@ final class LoginViewController: UIViewController {
     let loginButton = UIButton()
     let findAccountButton = UIButton()
     
-    private let passwordToggleButton = UIButton(type: .system)
-    private let passwordClearButton = UIButton(type: .system)
+    private let passwordToggleButton = UIButton()
+    private let passwordClearButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
         setup()
     }
     
@@ -43,11 +43,11 @@ extension LoginViewController {
     private func setupEmailField() {
         view.addSubview(emailField)
         emailField.placeholder = "이메일 아이디"
+        emailField.textColor = .label
         emailField.borderStyle = .none
         emailField.layer.cornerRadius = 5
         emailField.layer.borderWidth = 1
         emailField.layer.borderColor = UIColor.baeminGray200.cgColor
-        emailField.backgroundColor = .baeminWhite
         emailField.clearButtonMode = .whileEditing
         emailField.addLeftPadding()
     }
@@ -56,10 +56,10 @@ extension LoginViewController {
         view.addSubview(passwordField)
         passwordField.placeholder = "비밀번호"
         passwordField.borderStyle = .none
+        passwordField.textColor = .label
         passwordField.layer.cornerRadius = 5
         passwordField.layer.borderWidth = 1
         passwordField.layer.borderColor = UIColor.baeminGray200.cgColor
-        passwordField.backgroundColor = .baeminWhite
         passwordField.isSecureTextEntry = true
         passwordField.addLeftPadding()
         
@@ -104,19 +104,26 @@ extension LoginViewController {
 extension LoginViewController {
     
     private func setupButtonActions() {
+        setupEditingActions()
+        setupPwButtonAction()
+        setupLoginButtonAction()
+    }
+    
+    private func setupEditingActions() {
         [emailField, passwordField].forEach {
             $0.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
             $0.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
             $0.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         }
-        passwordClearButton.addTarget(self, action: #selector(clearPassword), for: .touchUpInside)
-        passwordToggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
-        loginButton.addTarget(self, action: #selector(pushToWelcomeVC), for: .touchUpInside)
     }
     
-    @objc private func pushToWelcomeVC() {
-        let viewController = ViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
+    private func setupPwButtonAction() {
+        passwordClearButton.addTarget(self, action: #selector(clearPassword), for: .touchUpInside)
+        passwordToggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+    }
+    
+    private func setupLoginButtonAction() {
+        loginButton.addTarget(self, action: #selector(pushToWelcomeVC), for: .touchUpInside)
     }
     
     @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
@@ -142,7 +149,23 @@ extension LoginViewController {
         let imageName = passwordField.isSecureTextEntry ? "eye.fill" : "eye.slash.fill"
         passwordToggleButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
+    
+    @objc private func pushToWelcomeVC() {
+        let viewController = ViewController(userID: emailField.text ?? "")
+        viewController.delegate = self
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 
+}
+
+extension LoginViewController: ViewControllerDelegate {
+    
+    func resetLoginFields() {
+        emailField.text = ""
+        passwordField.text = ""
+        textFieldEditingDidChange()
+    }
+    
 }
 
 extension LoginViewController {
