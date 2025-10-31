@@ -16,11 +16,13 @@ final class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setup()
     }
     
     private func setup() {
         setupSubviews()
+        setupButtonActions()
         setupLayout()
     }
     
@@ -41,7 +43,8 @@ extension LoginViewController {
         emailField.borderStyle = .none
         emailField.layer.cornerRadius = 5
         emailField.layer.borderWidth = 1
-        emailField.layer.borderColor = UIColor.gray.cgColor
+        emailField.layer.borderColor = UIColor.baeminGray200.cgColor
+        emailField.backgroundColor = .baeminWhite
         emailField.addLeftPadding()
         emailField.addRightPadding()
     }
@@ -52,7 +55,8 @@ extension LoginViewController {
         passwordField.borderStyle = .none
         passwordField.layer.cornerRadius = 5
         passwordField.layer.borderWidth = 1
-        passwordField.layer.borderColor = UIColor.gray.cgColor
+        passwordField.layer.borderColor = UIColor.baeminGray200.cgColor
+        passwordField.backgroundColor = .baeminWhite
         passwordField.addLeftPadding()
         passwordField.addRightPadding()
     }
@@ -68,6 +72,25 @@ extension LoginViewController {
         view.addSubview(findAccountButton)
         findAccountButton.setTitle("계정 찾기 >", for: .normal)
         findAccountButton.setTitleColor(.black, for: .normal)
+    }
+    
+}
+
+extension LoginViewController {
+    
+    private func setupButtonActions() {
+        [emailField, passwordField].forEach { tf in
+            tf.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
+            tf.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
+        }
+    }
+
+    @objc private func textFieldEditingDidBegin(_ sender: UITextField) {
+        sender.layer.borderColor = UIColor.baeminBlack.cgColor
+    }
+
+    @objc private func textFieldEditingDidEnd(_ sender: UITextField) {
+        sender.layer.borderColor = UIColor.baeminGray200.cgColor
     }
     
 }
