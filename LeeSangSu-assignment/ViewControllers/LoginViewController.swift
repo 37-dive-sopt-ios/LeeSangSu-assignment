@@ -151,7 +151,12 @@ extension LoginViewController {
     }
     
     @objc private func pushToWelcomeVC() {
-        let viewController = WelcomeViewController(userID: emailField.text ?? "")
+        guard let email = emailField.text,
+              EmailUtils.isValidFormat(email) else {
+            showToast(message: "이메일 형식을 지켜주세요~")
+            return
+        }
+        let viewController = WelcomeViewController(email: email)
         viewController.delegate = self
         self.navigationController?.pushViewController(viewController, animated: true)
     }

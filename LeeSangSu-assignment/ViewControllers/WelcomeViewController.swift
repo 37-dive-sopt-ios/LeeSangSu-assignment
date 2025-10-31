@@ -14,13 +14,13 @@ protocol WelcomeViewControllerDelegate: AnyObject {
 class WelcomeViewController: UIViewController {
     
     weak var delegate: WelcomeViewControllerDelegate?
-    private let userID: String
+    private let email: String
     private let imageView = UIImageView()
     private let greetingText = UILabel()
     private let backButton = UIButton()
     
-    init(userID: String) {
-        self.userID = userID
+    init(email: String) {
+        self.email = email
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,7 +56,7 @@ extension WelcomeViewController {
         view.addSubview(greetingText)
         greetingText.numberOfLines = 2
         greetingText.textAlignment = .center
-        greetingText.text = "환영합니다\n\(userID)님 반가워요!"
+        greetingText.text = "환영합니다\n\(email)님 반가워요!"
     }
     
     private func setupBackButton() {
