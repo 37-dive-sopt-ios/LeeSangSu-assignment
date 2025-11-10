@@ -9,13 +9,18 @@ import UIKit
 import SnapKit
 
 final class AdvertisementCell: UITableViewCell {
-    private var ads: [String] = []
+    private var ads: [UIImage?] = []
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(AdImageCell.self, forCellWithReuseIdentifier: "AdImageCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
         return collectionView
     }()
     
@@ -49,7 +54,7 @@ extension AdvertisementCell: UICollectionViewDataSource, UICollectionViewDelegat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdImageCell", for: indexPath) as? AdImageCell else {
             return UICollectionViewCell()
         }
-        cell.configure(image: UIImage(named: ads[indexPath.row]))
+        cell.configure(image: ads[indexPath.row])
         return cell
     }
     
@@ -57,5 +62,12 @@ extension AdvertisementCell: UICollectionViewDataSource, UICollectionViewDelegat
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+}
+
+extension AdvertisementCell {
+    func configure(ads: [UIImage?]) {
+        self.ads = ads
+        collectionView.reloadData()
     }
 }
