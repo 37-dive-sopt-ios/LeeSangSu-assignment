@@ -9,11 +9,7 @@ import UIKit
 
 final class BaeminFeedViewController: UIViewController {
     
-    private let rootView = BaeminFeedView()
-    
-    override func loadView() {
-        self.view = rootView
-    }
+    private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

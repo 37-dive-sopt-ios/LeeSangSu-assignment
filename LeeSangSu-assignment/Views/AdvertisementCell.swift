@@ -46,7 +46,11 @@ extension AdvertisementCell: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdImageCell", for: indexPath) as? AdImageCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure(image: UIImage(named: ads[indexPath.row]))
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView,

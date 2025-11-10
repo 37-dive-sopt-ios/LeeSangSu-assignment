@@ -26,3 +26,9 @@ final class AdImageCell: UICollectionViewCell {
         imageView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 }
+
+extension AdImageCell {
+    func configure(image: UIImage?) {
+        imageView.image = image
+    }
+}
