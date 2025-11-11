@@ -31,7 +31,7 @@ final class BaeminFeedViewController: UIViewController {
     }
 }
 
-extension BaeminFeedViewController: UITableViewDataSource, UITableViewDelegate {
+extension BaeminFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -40,7 +40,13 @@ extension BaeminFeedViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AdvertisementCell", for: indexPath) as? AdvertisementCell else {
             return UITableViewCell()
         }
-        cell.configure(ads: [UIImage(systemName: "person.fill"), UIImage(systemName: "person")])
+        cell.configure(items: [UIImage(systemName: "person.fill"), UIImage(systemName: "person")])
         return cell
+    }
+}
+
+extension BaeminFeedViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
     }
 }
