@@ -21,8 +21,8 @@ final class AdImageCell: UICollectionViewCell {
     }
     
     private func setup() {
-        imageView.contentMode = .scaleAspectFit
         contentView.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFit
         imageView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
 }

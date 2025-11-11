@@ -22,6 +22,7 @@ final class BaeminFeedViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AdvertisementCell.self, forCellReuseIdentifier: "AdvertisementCell")
+        tableView.register(MarketCell.self, forCellReuseIdentifier: "MarketCell")
     }
     
     private func layoutTableView() {
@@ -32,16 +33,37 @@ final class BaeminFeedViewController: UIViewController {
 }
 
 extension BaeminFeedViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+            2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AdvertisementCell", for: indexPath) as? AdvertisementCell else {
-            return UITableViewCell()
+        if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "AdvertisementCell", for: indexPath) as? AdvertisementCell else {
+                return UITableViewCell()
+            }
+            cell.configure(items: [UIImage(systemName: "person.fill"), UIImage(systemName: "person")])
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MarketCell", for: indexPath) as? MarketCell else {
+                return UITableViewCell()
+            }
+            cell.configure(items: [
+                CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+                CategoryItem(image: UIImage(systemName: "person"), text: "이마트"),
+                CategoryItem(image: UIImage(systemName: "sun.min"), text: "홈플러스"),
+                CategoryItem(image: UIImage(systemName: "sun.max"), text: "배민"),
+                CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+                CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+                CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+                CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU")
+            ])
+            return cell
         }
-        cell.configure(items: [UIImage(systemName: "person.fill"), UIImage(systemName: "person")])
-        return cell
     }
 }
 

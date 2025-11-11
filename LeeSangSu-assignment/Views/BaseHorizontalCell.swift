@@ -68,8 +68,8 @@ class BaseHorizontalCell<Item, Cell: UICollectionViewCell>: UITableViewCell,
 
     // MARK: - UICollectionViewDelegateFlowLayout
     
-    var cellWidth: CGFloat { 60 }
-    var cellHeight: CGFloat { 60 }
+    var cellWidth: CGFloat { 70 }
+    var cellHeight: CGFloat { 70 }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
