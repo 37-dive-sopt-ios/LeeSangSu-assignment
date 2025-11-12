@@ -23,6 +23,7 @@ final class BaeminFeedViewController: UIViewController {
         tableView.delegate = self
         tableView.register(AdvertisementCell.self, forCellReuseIdentifier: AdvertisementCell.identifier)
         tableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.identifier)
+        tableView.register(OneServingSectionCell.self, forCellReuseIdentifier: OneServingSectionCell.identifier)
     }
     
     private func layoutTableView() {
@@ -34,7 +35,7 @@ final class BaeminFeedViewController: UIViewController {
 
 extension BaeminFeedViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,9 +48,13 @@ extension BaeminFeedViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.identifier, for: indexPath)
             (cell as? CategoryCell)?.configure(items: MockData.marketData)
             return cell
-        default:
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: AdvertisementCell.identifier, for: indexPath)
             (cell as? AdvertisementCell)?.configure(items: MockData.advertisementData)
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: OneServingSectionCell.identifier, for: indexPath)
+            (cell as? OneServingSectionCell)?.configure(items: MockData.oneServingData)
             return cell
         }
     }
@@ -60,8 +65,10 @@ extension BaeminFeedViewController: UITableViewDelegate {
         switch indexPath.section {
         case 0:
             return 100
-        default:
+        case 1:
             return 100
+        default:
+            return 300
         }
     }
 }
