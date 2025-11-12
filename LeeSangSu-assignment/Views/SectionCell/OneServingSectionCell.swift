@@ -20,7 +20,6 @@ final class OneServingSectionCell: BaseHorizontalCell<OneServingItem, OneServing
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .baeminGray200
         setupLayout()
     }
     

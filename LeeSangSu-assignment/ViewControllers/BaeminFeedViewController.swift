@@ -71,4 +71,14 @@ extension BaeminFeedViewController: UITableViewDelegate {
             return 300
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 2 ? 50 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 2 else { return nil }
+        let headerView = OneServingHeaderView()
+        return headerView
+    }
 }
