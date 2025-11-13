@@ -9,12 +9,20 @@ import UIKit
 import SnapKit
 
 final class BaeminFeedViewController: UIViewController {
-    private let tableView = UITableView()
+    private let searchView = SearchView()
+    private let tableView = UITableView(frame: .zero, style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        setupSearchView()
         setupTableView()
-        layoutTableView()
+        layoutViews()
+        //layoutTableView()
+    }
+    
+    private func setupSearchView() {
+        view.addSubview(searchView)
     }
     
     private func setupTableView() {
@@ -29,6 +37,19 @@ final class BaeminFeedViewController: UIViewController {
     private func layoutTableView() {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+    }
+    
+    private func layoutViews() {
+        searchView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(56)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(searchView.snp.bottom).offset(10)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
