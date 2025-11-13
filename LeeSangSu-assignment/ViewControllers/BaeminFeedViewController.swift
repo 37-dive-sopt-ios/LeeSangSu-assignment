@@ -73,7 +73,7 @@ extension BaeminFeedViewController: UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: CategorySectionCell.identifier, for: indexPath)
-            (cell as? CategorySectionCell)?.configure(items: MockData.marketData)
+            (cell as? CategorySectionCell)?.configure(items: MockData.categoryData)
             return cell
         }
     }
@@ -89,7 +89,7 @@ extension BaeminFeedViewController: UITableViewDelegate {
         case 2:
             return 300
         default:
-            return 200
+            return 280
         }
     }
     

@@ -48,7 +48,19 @@ enum MockData {
         CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
         CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
         CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
-        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU")
+        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+        CategoryItem(image: UIImage(systemName: "sun.min"), text: "홈플러스"),
+        CategoryItem(image: UIImage(systemName: "sun.max"), text: "배민"),
+        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+        CategoryItem(image: UIImage(systemName: "sun.min"), text: "홈플러스"),
+        CategoryItem(image: UIImage(systemName: "sun.max"), text: "배민"),
+        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+        CategoryItem(image: UIImage(systemName: "sun.min"), text: "홈플러스"),
+        CategoryItem(image: UIImage(systemName: "sun.max"), text: "배민"),
+        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
+        CategoryItem(image: UIImage(systemName: "person.fill"), text: "CU"),
     ]
     
     static let oneServingData: [OneServingItem] = [
@@ -103,4 +115,8 @@ enum MockData {
             commentCount: "150+"
         ),
     ]
+}
+
+extension MockData {
+    static let categories = ["음식 배달", "픽업", "장보기/쇼핑", "선물하기", "혜택 모아보기"]
 }
