@@ -26,7 +26,7 @@ final class CategoryItemCell: UICollectionViewCell {
     private func setupIcon() {
         contentView.addSubview(icon)
         icon.contentMode = .scaleAspectFit
-        icon.layer.cornerRadius = 5
+        icon.layer.cornerRadius = 15
         icon.layer.borderWidth = 2
         icon.backgroundColor = .baeminGray200
     }
