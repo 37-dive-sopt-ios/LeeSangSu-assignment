@@ -1,5 +1,5 @@
 //
-//  AdvertisementCell.swift
+//  AdvertisementSectionCell.swift
 //  LeeSangSu-assignment
 //
 //  Created by 이상수 on 11/10/25.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class AdvertisementCell: BaseHorizontalCell<UIImage?, AdImageCell> {
+final class AdvertisementSectionCell: BaseHorizontalCell<UIImage?, AdImageCell> {
     override var cellWidth: CGFloat { collectionView.frame.width }
     override var cellHeight: CGFloat { collectionView.frame.height }
     override func configureCell(_ cell: AdImageCell, item: UIImage?) {

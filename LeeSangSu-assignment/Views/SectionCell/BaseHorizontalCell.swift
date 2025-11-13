@@ -20,6 +20,7 @@ class BaseHorizontalCell<Item, Cell: UICollectionViewCell>: UITableViewCell,
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = lineSpacing
         layout.minimumInteritemSpacing = interitemSpacing
+        layout.sectionInset = .init(top: 0, left: 10, bottom: 0, right: 10)
         return layout
     }()
     

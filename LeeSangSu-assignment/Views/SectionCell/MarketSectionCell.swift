@@ -1,5 +1,5 @@
 //
-//  CategoryCell.swift
+//  MarketSectionCell.swift
 //  LeeSangSu-assignment
 //
 //  Created by 이상수 on 11/11/25.
@@ -8,9 +8,14 @@
 import UIKit
 import SnapKit
 
-final class CategoryCell: BaseHorizontalCell<CategoryItem, CategoryItemCell> {
-    override var lineSpacing: CGFloat { 5 }
-    override var interitemSpacing: CGFloat { 5 }
+final class MarketSectionCell: BaseHorizontalCell<CategoryItem, CategoryItemCell> {
+    override var lineSpacing: CGFloat { 10 }
+    override var interitemSpacing: CGFloat { 10 }
+    override var cellWidth: CGFloat {
+        (collectionView.frame.width - (7 * lineSpacing)) / 6
+    }
+    override var cellHeight: CGFloat { cellWidth + 15 }
+    
     override func configureCell(_ cell: CategoryItemCell, item: CategoryItem) {
         cell.configure(image: item.image, text: item.text)
     }

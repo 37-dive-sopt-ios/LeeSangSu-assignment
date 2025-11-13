@@ -38,10 +38,12 @@ final class CategoryItemCell: UICollectionViewCell {
     
     private func layout() {
         icon.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(5)
+            $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(40)
+            $0.width.equalToSuperview()
+            $0.height.equalTo(icon.snp.width)
         }
+        
         title.snp.makeConstraints {
             $0.top.equalTo(icon.snp.bottom).offset(5)
             $0.centerX.equalToSuperview()
