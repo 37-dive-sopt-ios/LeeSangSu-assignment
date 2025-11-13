@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class BaeminFeedViewController: UIViewController {
-    private let searchView = SearchView()
+    private let headerView = BaeminHeaderView()
     private let tableView = UITableView(frame: .zero, style: .plain)
     
     override func viewDidLoad() {
@@ -17,12 +17,11 @@ final class BaeminFeedViewController: UIViewController {
         view.backgroundColor = .white
         setupSearchView()
         setupTableView()
-        layoutViews()
-        //layoutTableView()
+        setupLayout()
     }
     
     private func setupSearchView() {
-        view.addSubview(searchView)
+        view.addSubview(headerView)
     }
     
     private func setupTableView() {
@@ -33,22 +32,16 @@ final class BaeminFeedViewController: UIViewController {
         tableView.register(CategoryCell.self, forCellReuseIdentifier: CategoryCell.identifier)
         tableView.register(OneServingSectionCell.self, forCellReuseIdentifier: OneServingSectionCell.identifier)
     }
-    
-    private func layoutTableView() {
-        tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
-    private func layoutViews() {
-        searchView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
+
+    private func setupLayout() {
+        headerView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(-70)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(56)
+            $0.height.equalTo(90)
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(searchView.snp.bottom).offset(10)
+            $0.top.equalTo(headerView.snp.bottom).offset(10)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

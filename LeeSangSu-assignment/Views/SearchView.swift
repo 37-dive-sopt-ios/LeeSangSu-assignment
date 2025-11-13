@@ -23,11 +23,12 @@ final class SearchView: UIView {
     
     private func setupTextField() {
         addSubview(searchTextField)
-        searchTextField.placeholder = "검색어를 입력하세요"
-        searchTextField.layer.cornerRadius = 10
-        searchTextField.layer.borderWidth = 2
+        searchTextField.placeholder = "찾아라! 맛있는 음식과 맛집"
+        searchTextField.layer.cornerRadius = 18
+        searchTextField.layer.borderWidth = 1
         searchTextField.layer.borderColor = UIColor.black.cgColor
         searchTextField.backgroundColor = .systemGray6
+        searchTextField.addLeftPadding(15)
         searchTextField.setRightIcon(image: UIImage(systemName: "magnifyingglass")) {
             print("검색창 버튼 클릭")
         }
@@ -35,8 +36,8 @@ final class SearchView: UIView {
 
     private func setupLayout() {
         searchTextField.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(8)
-            $0.centerY.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
             $0.height.equalTo(40)
         }
     }
