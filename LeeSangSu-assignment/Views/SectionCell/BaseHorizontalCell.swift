@@ -78,7 +78,5 @@ class BaseHorizontalCell<Item, Cell: UICollectionViewCell>: UITableViewCell,
         CGSize(width: cellWidth, height: cellHeight)
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // 서브클래스에서 오버라이드해서 사용
-    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {}
 }
