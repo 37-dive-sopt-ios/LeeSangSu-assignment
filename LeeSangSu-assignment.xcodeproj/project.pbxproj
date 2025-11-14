@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8D495DE12EC22546005F01C5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8D495DE02EC22546005F01C5 /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8D51CBF12EB46387008A1063 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D495DE12EC22546005F01C5 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +130,7 @@
 			);
 			name = "LeeSangSu-assignment";
 			packageProductDependencies = (
+				8D495DE02EC22546005F01C5 /* SnapKit */,
 			);
 			productName = "LeeSangSu-assignment";
 			productReference = 8D51CBDA2EB46384008A1063 /* LeeSangSu-assignment.app */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = 8D51CBD12EB46384008A1063;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8D495DDF2EC22546005F01C5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8D51CBDB2EB46384008A1063 /* Products */;
 			projectDirPath = "";
@@ -581,6 +590,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D495DDF2EC22546005F01C5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D495DE02EC22546005F01C5 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D495DDF2EC22546005F01C5 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D51CBD22EB46384008A1063 /* Project object */;
 }
