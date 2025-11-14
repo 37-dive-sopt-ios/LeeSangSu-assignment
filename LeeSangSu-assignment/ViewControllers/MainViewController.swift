@@ -17,11 +17,11 @@ final class MainViewController: UITabBarController {
 
     private func setupTabs() {
         let tabs: [(UIViewController, String, UIImage?)] = [
-            (BaeminFeedViewController(), "홈", UIImage(systemName: "house")),
-            (EmptyViewController(), "장보기/쇼핑", UIImage(systemName: "house")),
-            (EmptyViewController(), "찜", UIImage(systemName: "house")),
-            (EmptyViewController(), "주문내역", UIImage(systemName: "house")),
-            (EmptyViewController(), "마이배민", UIImage(systemName: "house"))
+            (BaeminFeedViewController(), "홈", UIImage(named: "home")),
+            (EmptyViewController(), "장보기/쇼핑", UIImage(named: "shopping")),
+            (EmptyViewController(), "찜", UIImage(named: "heart")),
+            (EmptyViewController(), "주문내역", UIImage(named: "order")),
+            (EmptyViewController(), "마이배민", UIImage(named: "tasty"))
         ]
         
         viewControllers = tabs.enumerated().map { index, tab in
