@@ -104,7 +104,7 @@ private extension OneServingCell {
     private func setupMinimumPriceLabel() {
         contentView.addSubview(minimumPriceLabel)
         minimumPriceLabel.font = .systemFont(ofSize: 15, weight: .bold)
-        minimumPriceLabel.textColor = .purple
+        minimumPriceLabel.textColor = .baeminPurple
         minimumPriceLabel.text = "최소주문금액 없음"
     }
 }

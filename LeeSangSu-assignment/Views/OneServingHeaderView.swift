@@ -10,6 +10,7 @@ import SnapKit
 
 final class OneServingHeaderView: UIView {
     private let titleLabel = UILabel()
+    private let infoIcon = UIImageView()
     private let moreButton = UIButton(type: .system)
     
     override init(frame: CGRect) {
@@ -26,6 +27,7 @@ final class OneServingHeaderView: UIView {
 private extension OneServingHeaderView {
     private func setupSubviews() {
         setupTitleLabel()
+        setupInfoIcon()
         setupMoreButton()
     }
     
@@ -34,6 +36,11 @@ private extension OneServingHeaderView {
         titleLabel.text = "우리 동네 한그릇 인기 랭킹"
         titleLabel.font = .systemFont(ofSize: 23, weight: .bold)
         titleLabel.textColor = .baeminBlack
+    }
+    
+    private func setupInfoIcon() {
+        addSubview(infoIcon)
+        infoIcon.image = UIImage(named: "info")
     }
     
     private func setupMoreButton() {
@@ -48,6 +55,11 @@ extension OneServingHeaderView {
     private func setupLayout() {
         titleLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+        }
+        
+        infoIcon.snp.makeConstraints {
+            $0.leading.equalTo(titleLabel.snp.trailing).offset(5)
             $0.centerY.equalToSuperview()
         }
         
