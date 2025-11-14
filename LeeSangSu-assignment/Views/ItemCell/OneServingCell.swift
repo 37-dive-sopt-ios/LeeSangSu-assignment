@@ -18,6 +18,7 @@ final class OneServingCell: UICollectionViewCell {
     private let discountLabel = UILabel()
     private let priceLabel = UILabel()
     private let originalPriceLabel = UILabel()
+    private let minimumPriceLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +42,7 @@ private extension OneServingCell {
         setupDiscountLabel()
         setupPriceLabel()
         setupOriginalPriceLabel()
+        setupMinimumPriceLabel()
     }
     
     private func setupThumbnailImageView() {
@@ -98,6 +100,13 @@ private extension OneServingCell {
         originalPriceLabel.font = .systemFont(ofSize: 11)
         originalPriceLabel.textColor = .lightGray
     }
+    
+    private func setupMinimumPriceLabel() {
+        contentView.addSubview(minimumPriceLabel)
+        minimumPriceLabel.font = .systemFont(ofSize: 15, weight: .bold)
+        minimumPriceLabel.textColor = .purple
+        minimumPriceLabel.text = "최소주문금액 없음"
+    }
 }
 
 extension OneServingCell {
@@ -145,6 +154,11 @@ extension OneServingCell {
 
         originalPriceLabel.snp.makeConstraints {
             $0.top.equalTo(priceLabel.snp.bottom).offset(2)
+            $0.leading.equalToSuperview().inset(4)
+        }
+        
+        minimumPriceLabel.snp.makeConstraints {
+            $0.top.equalTo(originalPriceLabel.snp.bottom).offset(4)
             $0.leading.equalToSuperview().inset(4)
         }
     }

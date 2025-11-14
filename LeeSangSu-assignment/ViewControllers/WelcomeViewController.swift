@@ -32,6 +32,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = "대체 뼈찜 누가 시켰어??"
+
         setupSubviews()
         setupButtonActions()
         setupLayout()
