@@ -10,7 +10,7 @@ import SnapKit
 
 final class BaeminFeedViewController: UIViewController {
     private let headerView = BaeminHeaderView()
-    private let tableView = UITableView(frame: .zero, style: .plain)
+    private let tableView = UITableView(frame: .zero, style: .grouped)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,16 @@ final class BaeminFeedViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
+        //tableView.sectionHeaderTopPadding = 0
+        tableView.sectionFooterHeight = 0
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(
-            AdvertisementSectionCell.self,
+            BmartSectionCell.self,
+            CategorySectionCell.self,
             MarketSectionCell.self,
+            AdvertisementSectionCell.self,
             OneServingSectionCell.self,
-            CategorySectionCell.self
         )
     }
 
@@ -62,8 +65,9 @@ extension BaeminFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AdvertisementSectionCell.identifier, for: indexPath)
-            (cell as? AdvertisementSectionCell)?.configure(items: MockData.advertisementData)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BmartSectionCell.identifier, for: indexPath) as? BmartSectionCell else {
+                return UITableViewCell()
+            }
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: CategorySectionCell.identifier, for: indexPath)
@@ -100,4 +104,5 @@ extension BaeminFeedViewController: UITableViewDelegate {
             return 400
         }
     }
+
 }
