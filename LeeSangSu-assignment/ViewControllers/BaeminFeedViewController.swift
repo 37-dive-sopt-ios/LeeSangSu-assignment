@@ -28,10 +28,12 @@ final class BaeminFeedViewController: UIViewController {
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(AdvertisementSectionCell.self, forCellReuseIdentifier: AdvertisementSectionCell.identifier)
-        tableView.register(MarketSectionCell.self, forCellReuseIdentifier: MarketSectionCell.identifier)
-        tableView.register(OneServingSectionCell.self, forCellReuseIdentifier: OneServingSectionCell.identifier)
-        tableView.register(CategorySectionCell.self, forCellReuseIdentifier: CategorySectionCell.identifier)
+        tableView.register(
+            AdvertisementSectionCell.self,
+            MarketSectionCell.self,
+            OneServingSectionCell.self,
+            CategorySectionCell.self
+        )
     }
 
     private func setupLayout() {
@@ -50,30 +52,34 @@ final class BaeminFeedViewController: UIViewController {
 
 extension BaeminFeedViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MarketSectionCell.identifier, for: indexPath)
-            (cell as? MarketSectionCell)?.configure(items: MockData.marketData)
-            return cell
-        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: AdvertisementSectionCell.identifier, for: indexPath)
             (cell as? AdvertisementSectionCell)?.configure(items: MockData.advertisementData)
             return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: OneServingSectionCell.identifier, for: indexPath)
-            (cell as? OneServingSectionCell)?.configure(items: MockData.oneServingData)
-            return cell
-        default:
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: CategorySectionCell.identifier, for: indexPath)
             (cell as? CategorySectionCell)?.configure(items: MockData.categoryData)
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: MarketSectionCell.identifier, for: indexPath)
+            (cell as? MarketSectionCell)?.configure(items: MockData.marketData)
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AdvertisementSectionCell.identifier, for: indexPath)
+            (cell as? AdvertisementSectionCell)?.configure(items: MockData.advertisementData)
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: OneServingSectionCell.identifier, for: indexPath)
+            (cell as? OneServingSectionCell)?.configure(items: MockData.oneServingData)
             return cell
         }
     }
@@ -85,21 +91,13 @@ extension BaeminFeedViewController: UITableViewDelegate {
         case 0:
             return 100
         case 1:
-            return 100
-        case 2:
             return 300
+        case 2:
+            return 100
+        case 3:
+            return 100
         default:
-            return 280
+            return 400
         }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        section == 2 ? 50 : 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 2 else { return nil }
-        let headerView = OneServingHeaderView()
-        return headerView
     }
 }

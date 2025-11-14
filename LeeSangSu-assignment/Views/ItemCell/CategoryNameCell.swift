@@ -40,12 +40,12 @@ final class CategoryNameCell: UICollectionViewCell {
     
     private func layout() {
         titleLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
         }
         underlineView.snp.makeConstraints {
             $0.height.equalTo(2)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom).offset(1)
         }
     }
 }

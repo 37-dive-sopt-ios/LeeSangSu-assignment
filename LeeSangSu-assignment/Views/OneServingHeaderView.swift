@@ -35,18 +35,19 @@ private extension OneServingHeaderView {
         addSubview(titleLabel)
         titleLabel.text = "우리 동네 한그릇 인기 랭킹"
         titleLabel.font = .systemFont(ofSize: 23, weight: .bold)
-        titleLabel.textColor = .baeminBlack
+        titleLabel.textColor = .baeminWhite
     }
     
     private func setupInfoIcon() {
         addSubview(infoIcon)
+        infoIcon.tintColor = .baeminWhite
         infoIcon.image = UIImage(named: "info")
     }
     
     private func setupMoreButton() {
         addSubview(moreButton)
         moreButton.setTitle("전체보기 >", for: .normal)
-        moreButton.setTitleColor(.baeminGray700, for: .normal)
+        moreButton.setTitleColor(.baeminWhite, for: .normal)
         moreButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
     }
 }

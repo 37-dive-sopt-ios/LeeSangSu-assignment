@@ -26,7 +26,7 @@ class BaseHorizontalCell<Item, Cell: UICollectionViewCell>: UITableViewCell,
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
