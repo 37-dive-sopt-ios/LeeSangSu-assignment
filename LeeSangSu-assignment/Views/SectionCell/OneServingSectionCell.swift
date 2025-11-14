@@ -18,6 +18,7 @@ final class OneServingSectionCell: BaseHorizontalCell<OneServingItem, OneServing
         cell.configure(item: item)
     }
     
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()

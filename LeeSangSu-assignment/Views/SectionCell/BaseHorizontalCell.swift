@@ -30,7 +30,7 @@ class BaseHorizontalCell<Item, Cell: UICollectionViewCell>: UITableViewCell,
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(Cell.self, forCellWithReuseIdentifier: String(describing: Cell.self))
+        collectionView.register(Cell.self, forCellWithReuseIdentifier: Cell.identifier)
         return collectionView
     }()
 
@@ -56,7 +56,7 @@ class BaseHorizontalCell<Item, Cell: UICollectionViewCell>: UITableViewCell,
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: String(describing: Cell.self),
+            withReuseIdentifier: Cell.identifier,
             for: indexPath
         ) as? Cell else {
             return UICollectionViewCell()

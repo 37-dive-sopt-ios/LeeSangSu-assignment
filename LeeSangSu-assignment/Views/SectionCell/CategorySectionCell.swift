@@ -16,10 +16,12 @@ final class CategorySectionCell: BaseHorizontalCell<CategoryItem, CategoryItemCe
     }
     override var cellHeight: CGFloat { cellWidth + 15 }
     
+    private let categoryHeader = CategoryHeader()
     private let moreButton = UIButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupHeader()
         setupButton()
         setupLayout()
         collectionView.isPagingEnabled = true
@@ -33,18 +35,27 @@ final class CategorySectionCell: BaseHorizontalCell<CategoryItem, CategoryItemCe
         cell.configure(image: item.image, text: item.text)
     }
     
+    private func setupHeader() {
+        contentView.addSubview(categoryHeader)
+    }
+    
     private func setupButton() {
         contentView.addSubview(moreButton)
-        moreButton.setTitleColor(.darkGray, for: .normal)
+        moreButton.setTitleColor(.black, for: .normal)
         moreButton.titleLabel?.font = .systemFont(ofSize: 14)
-        moreButton.backgroundColor = .systemGray6
         moreButton.layer.cornerRadius = 8
         moreButton.setTitle("\(MockData.categories.first ?? "")에서 더보기 >", for: .normal)
     }
     
     private func setupLayout() {
-        collectionView.snp.makeConstraints {
+        categoryHeader.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(25)
+        }
+        
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(categoryHeader.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(55)
         }
         
@@ -63,6 +74,7 @@ final class CategorySectionCell: BaseHorizontalCell<CategoryItem, CategoryItemCe
         if newIndex >= 0 && newIndex < MockData.categories.count {
             let newCategory = MockData.categories[newIndex]
             moreButton.setTitle("\(newCategory)에서 더보기 >", for: .normal)
+            categoryHeader.updateSelectedIndex(newIndex)
         }
     }
 }
