@@ -11,8 +11,8 @@ extension UITextField {
     
     func setLeftIcon(
         image: UIImage?,
-        leftPadding: CGFloat,
-        rightPadding: CGFloat,
+        leftPadding: CGFloat = 10,
+        rightPadding: CGFloat = 10,
         iconSize: CGFloat = Constants.maxIconSize,
         action: (() -> Void)? = nil
     ) {
@@ -28,8 +28,8 @@ extension UITextField {
 
     func setRightIcon(
         image: UIImage?,
-        leftPadding: CGFloat,
-        rightPadding: CGFloat,
+        leftPadding: CGFloat = 10,
+        rightPadding: CGFloat = 10,
         iconSize: CGFloat = Constants.maxIconSize,
         action: (() -> Void)? = nil
     ) {
@@ -96,9 +96,6 @@ extension UITextField {
     }
     
 }
-
-
-
 
 extension UITextField {
     

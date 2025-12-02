@@ -18,6 +18,7 @@ class WelcomeViewController: UIViewController {
     private let imageView = UIImageView()
     private let greetingText = UILabel()
     private let backButton = UIButton()
+    private let mainButton = UIButton()
     
     init(email: String) {
         self.email = email
@@ -31,6 +32,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = "대체 뼈찜 누가 시켰어??"
+
         setupSubviews()
         setupButtonActions()
         setupLayout()
@@ -43,7 +46,8 @@ extension WelcomeViewController {
     private func setupSubviews() {
         setupImageView()
         setupGreetingText()
-        setupBackButton()
+        //setupBackButton()
+        setupMainButton()
     }
     
     private func setupImageView() {
@@ -66,12 +70,20 @@ extension WelcomeViewController {
         backButton.layer.cornerRadius = 5
     }
     
+    private func setupMainButton() {
+        view.addSubview(mainButton)
+        mainButton.backgroundColor = .baeminMint500
+        mainButton.setTitle("메인으로 가기", for: .normal)
+        mainButton.layer.cornerRadius = 5
+    }
+    
 }
 
 extension WelcomeViewController {
     
     private func setupButtonActions() {
         backButton.addTarget(self, action: #selector(backToLoginButtonDidTap), for: .touchUpInside)
+        mainButton.addTarget(self, action: #selector(mainButtonDidTap), for: .touchUpInside)
     }
     
     @objc private func backToLoginButtonDidTap() {
@@ -83,6 +95,12 @@ extension WelcomeViewController {
         delegate?.resetLoginFields()
     }
     
+    @objc private func mainButtonDidTap() {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.window?.rootViewController = MainViewController()
+        }
+    }
+    
 }
 
 extension WelcomeViewController {
@@ -90,7 +108,8 @@ extension WelcomeViewController {
     private func setupLayout() {
         layoutImageView()
         layoutGreetingText()
-        layoutBackButton()
+        //layoutBackButton()
+        layoutMainButton()
     }
     
     private func layoutImageView() {
@@ -113,6 +132,15 @@ extension WelcomeViewController {
     
     private func layoutBackButton() {
         backButton.anchor(
+            leading: view.leadingAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            trailing: view.trailingAnchor,
+            padding: .init(top: 0, left: 20, bottom: 20, right: 20)
+        )
+    }
+    
+    private func layoutMainButton() {
+        mainButton.anchor(
             leading: view.leadingAnchor,
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             trailing: view.trailingAnchor,
