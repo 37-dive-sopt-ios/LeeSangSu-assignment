@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 extension UITextField {
     
@@ -101,6 +102,17 @@ extension UITextField {
     
     fileprivate enum Constants {
         static let maxIconSize = 23.0
+    }
+    
+}
+
+extension UITextField {
+    
+    var textPublisher: AnyPublisher<String?, Never> {
+        NotificationCenter.default
+            .publisher(for: UITextField.textDidChangeNotification, object: self)
+            .map { ($0.object as? UITextField)?.text }
+            .eraseToAnyPublisher()
     }
     
 }
